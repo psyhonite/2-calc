@@ -48,11 +48,7 @@ func collectUserData() (operation string, digits []int) {
 	digitsStr := strings.Fields(input)
 	digits = make([]int, len(digitsStr))
 	for i := range digitsStr {
-		num, err := strconv.Atoi(digitsStr[i])
-		if err != nil {
-			fmt.Printf("Ошибка парсинга числа '%s': %v\n", digitsStr[i], err)
-			continue // или return для повторного ввода
-		}
+		num, _ := strconv.Atoi(digitsStr[i])
 		digits[i] = num
 	}
 	return operation, digits
