@@ -18,7 +18,7 @@ func main() {
 		fmt.Println("Вы хотите сделать еще расчёт?")
 		answer := ""
 		_, _ = fmt.Scan(&answer)
-		if answer == "Да" {
+		if answer == "Да" || answer == "да" {
 			continue
 		} else {
 			break
