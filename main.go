@@ -18,7 +18,7 @@ func main() {
 		fmt.Println("Вы хотите сделать еще расчёт?")
 		answer := ""
 		_, _ = fmt.Scan(&answer)
-		if answer == "Да" {
+		if answer == "Да" || answer == "да" {
 			continue
 		} else {
 			break
@@ -32,11 +32,12 @@ func collectUserData() (operation string, digits []int) {
 	for {
 		scanner.Scan()
 		text := scanner.Text()
+		text = strings.Trim(text, " ")
 		if text != "AVG" && text != "SUM" && text != "MED" {
 			fmt.Println("Неверные данные, введите операцию (AVG, SUM, MED): ")
 			continue
 		} else {
-			operation = strings.Trim(scanner.Text(), " ")
+			operation = text
 			break
 		}
 	}
@@ -47,10 +48,7 @@ func collectUserData() (operation string, digits []int) {
 	digitsStr := strings.Fields(input)
 	digits = make([]int, len(digitsStr))
 	for i := range digitsStr {
-		num, err := strconv.Atoi(digitsStr[i])
-		if err != nil {
-			fmt.Println(err)
-		}
+		num, _ := strconv.Atoi(digitsStr[i])
 		digits[i] = num
 	}
 	return operation, digits
