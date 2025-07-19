@@ -32,11 +32,12 @@ func collectUserData() (operation string, digits []int) {
 	for {
 		scanner.Scan()
 		text := scanner.Text()
+		text = strings.Trim(text, " ")
 		if text != "AVG" && text != "SUM" && text != "MED" {
 			fmt.Println("Неверные данные, введите операцию (AVG, SUM, MED): ")
 			continue
 		} else {
-			operation = strings.Trim(scanner.Text(), " ")
+			operation = text
 			break
 		}
 	}
@@ -49,7 +50,8 @@ func collectUserData() (operation string, digits []int) {
 	for i := range digitsStr {
 		num, err := strconv.Atoi(digitsStr[i])
 		if err != nil {
-			fmt.Println(err)
+			fmt.Printf("Ошибка парсинга числа '%s': %v\n", digitsStr[i], err)
+			continue // или return для повторного ввода
 		}
 		digits[i] = num
 	}
